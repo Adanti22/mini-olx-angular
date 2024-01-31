@@ -1,0 +1,113 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .announcments-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100vw;
+    padding-top: 50px;
+    row-gap: 20px;
+    box-sizing: border-box;
+
+  }
+
+  .announcment-container {
+    width: 450px;
+    height: 280px;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s ease-in-out;
+
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .info-wrap {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+  }
+
+  .info-description {
+    word-wrap: break-word;
+    font-size: 22px;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    min-height: 100vh;
+    align-items: center;
+    padding-top: 50px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .mini-form {
+    display: flex;
+    align-items: center;
+    gap: -5px;
+  }
+
+  .announcment-container:hover {
+    opacity: 0.90;
+    transform: translateY(-3px);
+  }
+
+  .profile-img {
+    position: absolute;
+    width: 100px;
+    left: 40px;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+  }
+
+  .profile-img:hover {
+    opacity: 0.9;
+  }
+
+</style>
+<div class="wrapper">
+  <img src="https://img.icons8.com/fluency/240/000000/user-male-circle--v2.png" alt="" class="profile-img"
+    routerLink="/personal">
+  <div class="mini-form">
+    <div class="field">
+      <input type="text" placeholder="По названию" [(ngModel)]="valueName" (input)="search('byName')">
+    </div>
+    <div class="field">
+      <input type="text" placeholder="По описанию" [(ngModel)]="valueDesc" (input)="search('byDesc')">
+    </div>
+  </div>
+  <main class="announcments-wrapper">
+
+    <div *ngFor="let announcement of updatedAnnouncements " class="announcment-container">
+      <h2>{{announcement.title}}</h2>
+      <div class="info-wrap">
+        <p class="info-item">Категория:<span> {{announcement.category}}</span></p>
+        <p class="info-item">Дата добавления:<span> {{announcement.date}}</span></p>
+      </div>
+      <p class="info-description">{{announcement.description}}</p>
+      <button [routerLink]="['/announcement', announcement.annId]">Перейти на страницу товара</button>
+    </div>
+  </main>
+</div>
+<!-- annId: number;
+category: string;
+title: string;
+img: string;
+description: string;
+date: string; -->

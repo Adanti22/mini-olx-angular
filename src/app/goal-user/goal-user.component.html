@@ -1,0 +1,150 @@
+<style>
+  main {
+    background-color: aliceblue;
+    width: 80vw;
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    gap: 30px;
+  }
+
+  .user-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .comments {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .comment {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .comment span {
+    font-weight: bold;
+  }
+
+  .announcments-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%;
+    padding-top: 50px;
+    row-gap: 20px;
+    box-sizing: border-box;
+
+  }
+
+  .announcment-container {
+    width: 450px;
+    height: 280px;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s ease-in-out;
+
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  .to__main {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+
+</style>
+<main *ngIf="user">
+  <button [routerLink]="['/main']" class="to__main">На главную</button>
+  <h2>{{user.name}}</h2>
+  <div class="user-data">
+    <h4>{{user.number}}</h4>
+    <h4>{{user.mail}}</h4>
+    <h4>Возраст: {{user.age}}</h4>
+    <h4>Пол: {{user.gender}}</h4>
+  </div>
+  <h3>Объявления</h3>
+  <div class="announcments-wrapper">
+
+    <div *ngFor="let announcement of user.announcements " class="announcment-container">
+      <h2>{{announcement.title}}</h2>
+      <div class="info-wrap">
+        <p class="info-item">Категория:<span> {{announcement.category}}</span></p>
+        <p class="info-item">Дата добавления:<span> {{announcement.date}}</span></p>
+      </div>
+      <p class="info-description">{{announcement.description}}</p>
+      <button [routerLink]="['/announcement', announcement.annId]">Перейти на страницу товара</button>
+    </div>
+  </div>
+  <h3>Отзывы</h3>
+  <div class="comments">
+    <div class="comment" *ngFor="let comment of user.comments ">
+      <span>{{comment.userName}}:</span>
+      <p>{{comment.comment}}</p>
+    </div>
+  </div>
+</main>
+<!--  {
+    "userId": 0,
+    "name": "Григорий",
+    "mail": "grigoriy@gmail.com",
+    "password": "password",
+    "gender": "мужской",
+    "age": 30,
+    "number": "+77075434343",
+    "comments": [
+      { "userName": "Антон", "comment": "Хороший продавец. Спасибо!" },
+      { "userName": "Екатерина", "comment": "Быстрая сделка, рекомендую." },
+      { "userName": "Дмитрий", "comment": "Все отлично, как и описано." }
+    ],
+    "announcements": [
+      {
+        "annId": 111,
+        "category": "Транспорт",
+        "title": "Продаю Ладу",
+        "description": "Лада 1999 года, в отличном состоянии. Звоните, пишите.",
+        "date": "2023-02-03"
+      },
+      {
+        "annId": 112,
+        "category": "Техника",
+        "title": "Ноутбук Asus Expire-7",
+        "description": "Мощный ноутбук с большим объемом памяти и высоким разрешением экрана.",
+        "date": "2023-10-10"
+      },
+      {
+        "annId": 113,
+        "category": "Техника",
+        "title": "Продаю ноутбук",
+        "description": "Мощный ноутбук с большим объемом памяти и высоким разрешением экрана.",
+        "date": "2023-11-07"
+      }
+    ]
+  }, -->

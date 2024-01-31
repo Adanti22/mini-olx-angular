@@ -1,0 +1,25 @@
+<style>
+
+</style>
+<main class="form-container">
+  <div class="login-form">
+    <div class="text">
+      Регистрация
+    </div>
+    <div class="form">
+      <div class="field">
+        <input type="text" placeholder="Логин" [(ngModel)]="login">
+      </div>
+      <div class="field">
+        <input type="password" placeholder="Пароль" [(ngModel)]="password">
+      </div>
+      <div class="field">
+        <input type="password" [(ngModel)]="repPass" placeholder="Повторите пароль">
+      </div>
+      <button (click)="registr()">Зарегистрироваться</button>
+      <div class="link">
+        Уже есть аккаунт? <a href="#" routerLink="">Войти</a>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,65 @@
+<style>
+  main {
+    width: 80vw;
+    height: 60vh;
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid black;
+    top: 20%;
+    border-radius: 20px;
+    padding: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-around;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .info-wrap {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .info-description {
+    word-wrap: break-word;
+    font-size: 22px;
+  }
+
+  img {
+    width: 150px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .to__main {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+
+</style>
+
+<main *ngIf="announcement">
+  <button [routerLink]="['/main']" class="to__main">На главную</button>
+  <h2>{{announcement.title}}</h2>
+  <div class="info-wrap">
+    <p class="info-item">Категория:<span> {{announcement.category}}</span></p>
+    <p class="info-item">Дата добавления:<span> {{announcement.date}}</span></p>
+  </div>
+  <p class="info-description">{{announcement.description}}</p>
+  <img src="https://img.icons8.com/fluency/240/000000/user-male-circle--v2.png" alt="" class="profile-img"
+    routerLink="/">
+  <button [routerLink]="['/user',userId]">Перейти на страницу продавца</button>
+</main>
